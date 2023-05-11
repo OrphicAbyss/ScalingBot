@@ -1,9 +1,13 @@
-const Discord = require("discord.js");
-const client = new Discord.Client();
+"use strict";
+
 const fs = require("fs");
+
+const Discord = require("discord.js");
 const sql = require("sqlite");
 const config = require("./config.json");
 const levelerCore = require("./functions/levelSystem");
+
+const client = new Discord.Client();
 const talkedRecently = new Set();
 
 sql.open(`./db/mainDB.sqlite`);

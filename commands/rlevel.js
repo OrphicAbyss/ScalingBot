@@ -1,3 +1,5 @@
+"use strict";
+
 exports.run = (client, message, args, sql) => {
     let uRole = message.guild.roles.find("name", "Staff");
     if (!uRole) {
@@ -5,7 +7,7 @@ exports.run = (client, message, args, sql) => {
     } else {
         if (message.member.roles.has(uRole.id)) {
             let condition = args[0];
-            if (condition == "add") {
+            if (condition === "add") {
                 let alvl = args[1]; //get's the level
                 let pRole = args.splice(2); //only get's the name of the role
                 let nRole = message.guild.roles.find("name", pRole.join(" ")); //checks for the role
@@ -25,7 +27,7 @@ exports.run = (client, message, args, sql) => {
                         message.reply("need to create table");
                     });
                 }
-            } else if (condition == "remove") {
+            } else if (condition === "remove") {
                 let pRole = args.splice(1);
                 let nRole = message.guild.roles.find("name", pRole.join(" ")); //checks for the role
                 if (!nRole) {

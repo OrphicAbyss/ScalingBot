@@ -1,5 +1,7 @@
+"use strict";
+
 module.exports.levelUpEmbed = function (client, message, Discord, level) {
-    var embed = new Discord.RichEmbed()
+    const embed = new Discord.RichEmbed()
         .setTitle(message.author.username)
         .setDescription(`**CONGRATS**\nYou are now level **${level}**!!!`)
         .setColor(0x00AE86)

@@ -1,4 +1,7 @@
+"use strict";
+
 const pEmbed = require("./../embeds/eProfile.js");
+
 exports.run = (client, message, args, sql, Discord) => {
     const member = message.guild.member(message.mentions.users.first());
 

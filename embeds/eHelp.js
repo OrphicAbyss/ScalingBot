@@ -1,7 +1,9 @@
+"use strict";
+
 module.exports.helpEmbed = function (client, message, Discord) {
     var embed = new Discord.RichEmbed()
-        .setTitle("Amari Bot")
-        .setDescription("List of commands for Amari Bot.")
+        .setTitle("ScaleBot")
+        .setDescription("List of commands for ScaleBot.")
         .setColor(0x00AE86)
         .setThumbnail(client.user.displayAvatarURL)
         .addField("Commands", `**:?leaderboard**

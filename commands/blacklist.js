@@ -1,3 +1,5 @@
+"use strict";
+
 exports.run = (client, message, args, sql, Discord) => {
     let uAccess = message.guild.roles.find("name", "Staff");
     if (!uAccess) {
@@ -5,7 +7,7 @@ exports.run = (client, message, args, sql, Discord) => {
     } else {
         if (message.member.roles.has(uAccess.id)) {
             let condition = args[0];
-            if (condition == "add") {
+            if (condition === "add") {
                 let pRole = args.splice(1);
                 let bRole = message.guild.roles.find("name", pRole.join(" "));
                 if (!bRole) {
@@ -14,7 +16,7 @@ exports.run = (client, message, args, sql, Discord) => {
                     sql.run(`INSERT INTO bListRoles (guildID, roleName, roleID) VALUES (?,?,?)`, [message.guild.id, bRole.name, bRole.id]);
                     message.reply(`${pRole.join(" ")} has been added to the points system blacklist.`);
                 }
-            } else if (condition == "remove") {
+            } else if (condition === "remove") {
                 let pRole = args.splice(1);
                 let cRole = message.guild.roles.find("name", pRole.join(" "));
                 if (!cRole) {

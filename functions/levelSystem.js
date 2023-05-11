@@ -1,5 +1,8 @@
+"use strict";
+
 const checkRank = require("./chRank.js");
 const lUpEmbed = require("./../embeds/eLevelUp.js");
+
 module.exports.scoreSystem = function (client, message, sql, Discord) {
     sql.get(`SELECT * FROM userScores WHERE guildID = '${message.guild.id}' AND userID = '${message.author.id}'`).then(row => {
         const eUsername = message.author.username.replace("'", "''");

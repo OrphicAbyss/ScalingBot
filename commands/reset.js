@@ -1,3 +1,5 @@
+"use strict";
+
 exports.run = (client, message, args, sql) => {
     let uRole = message.guild.roles.find("name", "Staff");
     if (!uRole) {
