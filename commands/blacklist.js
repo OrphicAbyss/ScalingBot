@@ -1,7 +1,7 @@
 exports.run = (client, message, args, sql, Discord) => {
-    let uAccess = message.guild.roles.find("name", "AmariMod");
+    let uAccess = message.guild.roles.find("name", "Staff");
     if (!uAccess) {
-        message.reply("Please make a role named \"AmariMod\" and assign it to yourself to be able to use this command.");
+        message.reply("Please make a role named \"Staff\" and assign it to yourself to be able to use this command.");
     } else {
         if (message.member.roles.has(uAccess.id)) {
             let condition = args[0];

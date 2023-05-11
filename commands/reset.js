@@ -1,7 +1,7 @@
 exports.run = (client, message, args, sql) => {
-    let uRole = message.guild.roles.find("name", "AmariMod");
+    let uRole = message.guild.roles.find("name", "Staff");
     if (!uRole) {
-        message.reply("AmariMod Role not found. Please create it and assign it to yourself to be able to access the command.");
+        message.reply("Staff Role not found. Please create it and assign it to yourself to be able to access the command.");
     } else {
         if (message.member.roles.has(uRole.id)) {
             const rMember = message.guild.member(message.mentions.users.first());

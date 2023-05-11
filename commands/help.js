@@ -23,7 +23,7 @@ exports.run = (client, message, args, sql, Discord) => {
     };
     var crLevel = {
         command: "rlevel",
-        description: "Add/Remove roles that users gain at a certain level. Make sure that there is a role named **AmariMod** (only people with this role can add roles).\n\nTo **add** a role use: \`\`:?rlevel add level RoleName\`\` \nTo **remove** a role use: \`\`:?rlevel remove RoleName\`\`"
+        description: "Add/Remove roles that users gain at a certain level. Make sure that there is a role named **Staff** (only people with this role can add roles).\n\nTo **add** a role use: \`\`:?rlevel add level RoleName\`\` \nTo **remove** a role use: \`\`:?rlevel remove RoleName\`\`"
     };
     var pBlackList = {
         command: "blacklist",
