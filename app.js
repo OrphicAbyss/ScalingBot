@@ -23,60 +23,43 @@ fs.readdir("./events/", (err, files) => {
 });
 
 client.on("message", message => {
-    if (message.author.bot) return; //ignores bots
-    //if (message.channel.type !== 'text') return;
-    if (message.channel.type === "dm") {
-        if (!message.content.startsWith(config.prefix)) {
+    //ignores bots
+    if (message.author.bot) return;
+
+    // checks if the user is typing a command
+    if (!!message.content.startsWith(config.prefix)) {//user IS typing a command
+        //splits input to commands
+        let command = message.content.split(" ")[0];
+        command = command.slice(config.prefix.length);
+
+        let args = message.content.split(" ").slice(1); //passing through the argument content
+
+        try {
+            let commandFile = require(`./commands/${command}.js`);
+            commandFile.run(client, message, args, sql, Discord);
+        } catch (err) {
+            console.log(err);
+            client.users.get(config.ownerID).send(`${err}`);
+        }
+    } else {// user is NOT typing a command
+        if (message.channel.type === "dm") {
             client.users.get(config.ownerID).send(`${message.author.id}, ${message.author.username}: ${message.content}`);
         } else {
-            let command = message.content.split(" ")[0];
-            command = command.slice(config.prefix.length);
-
-            let args = message.content.split(" ").slice(1); //passing through the argument content
-
-            try {
-                let commandFile = require(`./commands/${command}.js`);
-                commandFile.run(client, message, args, sql, Discord);
-            } catch (err) {
-                console.log(err);
-                client.users.get(config.ownerID).send(`${err}`);
-                return;
-            }
-        }
-    } else {
-        if (!message.content.startsWith(config.prefix)) {//checks if the user is NOT typing a command
+            // check that the user isn't in a blacklisted role
             sql.all(`SELECT roleName FROM bListRoles WHERE guildID=${message.guild.id}`).then(rCheck => {
                 const blRoles = rCheck.map(g => g.roleName);
-                if (message.member.roles.some(r => blRoles.includes(r.name)) || message.guild.id == "264445053596991498" || message.guild.id == "110373943822540800") {
-                    return;
-                } else {
-                    if (talkedRecently.has(message.author.id)) {
-                        return;
-                    } else {
+                if (!message.member.roles.some(r => blRoles.includes(r.name))) {
+                    // check if they are talking too fast (spam)
+                    if (!talkedRecently.has(message.author.id)) {
                         levelerCore.scoreSystem(client, message, sql, Discord);
                         talkedRecently.add(message.author.id);
+                        // Removes the user from the set after 4 seconds
                         setTimeout(() => {
-                            // Removes the user from the set after 2.5 seconds
                             talkedRecently.delete(message.author.id);
-                        }, 4000);
+                        }, 4 * 1000);
                     }
                 }
             });
-        } else {//user IS typing a command
-            //splits input to commands
-            let command = message.content.split(" ")[0];
-            command = command.slice(config.prefix.length);
-
-            let args = message.content.split(" ").slice(1); //passing through the argument content
-
-            try {
-                let commandFile = require(`./commands/${command}.js`);
-                commandFile.run(client, message, args, sql, Discord);
-            } catch (err) {
-                console.log(err);
-                client.users.get(config.ownerID).send(`${err}`);
-                return;
-            }
         }
     }
 });
