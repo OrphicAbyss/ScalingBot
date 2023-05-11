@@ -46,7 +46,7 @@ client.on("message", message => {
     } else {
         if (!message.content.startsWith(config.prefix)) {//checks if the user is NOT typing a command
             sql.all(`SELECT roleName FROM bListRoles WHERE guildID=${message.guild.id}`).then(rCheck => {
-                var blRoles = rCheck.map(g => g.roleName);
+                const blRoles = rCheck.map(g => g.roleName);
                 if (message.member.roles.some(r => blRoles.includes(r.name)) || message.guild.id == "264445053596991498" || message.guild.id == "110373943822540800") {
                     return;
                 } else {
