@@ -1,4 +1,4 @@
-module.exports.profileEmbed = function(client, message, user, iUser, Discord) {
+module.exports.profileEmbed = function (client, message, user, iUser, Discord) {
     var embed = new Discord.RichEmbed()
         .setTitle(user.username)
         .setDescription(`**Level:** ${iUser.uLevel} \n**Exp:** ${iUser.globalPoints} / ${iUser.nextPL}\n**Rank:** ${iUser.globalRank}`)
@@ -7,4 +7,4 @@ module.exports.profileEmbed = function(client, message, user, iUser, Discord) {
 
     message.channel.send({embed: embed});
 
-}
+};

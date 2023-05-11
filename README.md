@@ -1,8 +1,13 @@
-# AmariBot
-Discord bot built from [discord.js](https://discord.js.org/#/). This bot is for people who want a better and simpler level system in their server.
+# ScalingBot
+Leveling system bot for TransProgrammer to help protect our members.
 
-# Get this bot on your server [Click Here](https://discordapp.com/oauth2/authorize?client_id=339254240012664832&scope=bot&permissions=268954688)
+Discord bot built from [discord.js](https://discord.js.org/#/). This bot is for people who want a better and simpler
+level system in their server.
 
+## Add bot link
+Get this bot on your server [Click Here](https://discordapp.com/oauth2/authorize?client_id=339254240012664832&scope=bot&permissions=268954688)
+
+## Commmands
 | Command | Description |
 | ------ | ------ |
 | Prefix | :? |

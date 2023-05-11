@@ -1,6 +1,6 @@
-const config = require('./../config.json');
-const moment = require('moment');
+const config = require("./../config.json");
+const moment = require("moment");
 exports.run = (client, message, args, sql, Discord) => {
-  let tDate = moment().format('LLLL');
-  client.users.get(config.ownerID).send(`**Username**: ${message.author.username}, ${message.author.id}\n**Bug**: \`\`\`${args.join(" ")}\`\`\`\n**Server**: ${message.guild.name}\n**Date**: ${tDate}`);
-}
+    let tDate = moment().format("LLLL");
+    client.users.get(config.ownerID).send(`**Username**: ${message.author.username}, ${message.author.id}\n**Bug**: \`\`\`${args.join(" ")}\`\`\`\n**Server**: ${message.guild.name}\n**Date**: ${tDate}`);
+};

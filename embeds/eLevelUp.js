@@ -1,4 +1,4 @@
-module.exports.levelUpEmbed = function(client, message, Discord, level) {
+module.exports.levelUpEmbed = function (client, message, Discord, level) {
     var embed = new Discord.RichEmbed()
         .setTitle(message.author.username)
         .setDescription(`**CONGRATS**\nYou are now level **${level}**!!!`)
@@ -7,4 +7,4 @@ module.exports.levelUpEmbed = function(client, message, Discord, level) {
 
     message.channel.send({embed: embed});
 
-}
+};

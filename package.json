@@ -1,6 +1,6 @@
 {
-  "name": "amaribot",
-  "version": "0.1.0",
+  "name": "scalingbot",
+  "version": "0.1.1",
   "description": "This bot is focus on level system. With some extra's.",
   "main": "app.js",
   "scripts": {
@@ -8,10 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/litochee/AmariBot.git"
+    "url": "git+https://github.com/OrphicAbyss/ScalingBot.git"
   },
   "keywords": [
-    "AmariBot",
     "leaderboards",
     "chat",
     "commands",
@@ -21,9 +20,9 @@
   "author": "Litochee",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/litochee/AmariBot/issues"
+    "url": "https://github.com/OrphicAbyss/ScalingBot/issues"
   },
-  "homepage": "https://github.com/litochee/AmariBot#readme",
+  "homepage": "https://github.com/OrphicAbyss/ScalingBot#readme",
   "dependencies": {
     "discord.js": "^11.1.0",
     "jsesc": "^2.5.1",
