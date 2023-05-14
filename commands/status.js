@@ -1,13 +1,9 @@
 "use strict";
 
-const config = require("./../config.json");
+const isStaff = require("../functions/isStaff");
 
-exports.run = (client, message, args, sql) => {
-    //message.channel.send(args.join(" ")); //joins it back together
-    if (message.author.id === config.ownerID) {
-        client.user.setGame(args.join(" "));
-    } else {
-        message.channel.send(`Sorry you don't have access to this command.`);
+exports.run = (client, message, args) => {
+    if (isStaff(message)) {
+        client.user.setActivity(args.join(" "), { type: "LISTENING" });
     }
-
 };

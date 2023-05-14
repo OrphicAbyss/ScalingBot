@@ -1,25 +1,26 @@
 "use strict";
 
-module.exports.leaderboardEmbed = function (client, message, sql, Discord) {
-    sql.all(`SELECT username, globalPoints, nextPL from userScores WHERE guildID='${message.guild.id}' ORDER BY globalPoints DESC LIMIT 5`).then(gLeader => {
-        let leadOut = "Sorry there is no leaderboards yet. Start chatting!";
-        if (!!gLeader[0]) {
-            const lUser = gLeader.map(z => z.username);
-            const lPoints = gLeader.map(y => y.globalPoints);
-            const lNextP = gLeader.map(x => x.nextPL);
+const Discord = require("discord.js");
 
-            const leadOutp = lUser.map(function (a, b) {
-                let s = b + 1;
-                return [s + ". " + a + " " + lPoints[b] + "/" + lNextP[b]];
-            });
-            leadOut = leadOutp.join("\n");
-        }
+module.exports.leaderboardEmbed = function (client, message, leaders) {
+    let leadOut = "Sorry there is no leaderboards yet. Start chatting!";
+    if (!!leaders[0]) {
+        const lUser = leaders.map(u => u.username);
+        const lPoints = leaders.map(u => u.globalPoints);
+        const lNextP = leaders.map(u => u.rankPoints);
+        const lRank = leaders.map(u => u.rank);
 
-        const embed = new Discord.RichEmbed()
-            .setColor(0x00AE86)
-            .setThumbnail(message.guild.iconURL)
-            .addField(`Leaderboards for **${message.guild.name}**`, `${leadOut}`, true);
-        message.channel.send({embed: embed});
-    });
+        const leadOutp = lUser.map(function (user, i) {
+            let position = i + 1;
+            return [position + ". " + user + " Level: " + lRank[i] + "Exp: " + lPoints[i] + "/" + lNextP[i]];
+        });
+        leadOut = leadOutp.join("\n");
+    }
 
+    const embed = new Discord.RichEmbed()
+        .setColor(0x00AE86)
+        .setThumbnail(message.guild.iconURL)
+        .addField(`Leaderboards for **${message.guild.name}**`, `${leadOut}`, true);
+
+    message.channel.send({embed: embed});
 };

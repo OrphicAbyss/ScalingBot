@@ -1,6 +1,8 @@
 "use strict";
 
-module.exports.spHEmbed = function (client, message, Discord, spCmd) {
+const Discord = require("discord.js");
+
+module.exports.spHEmbed = function (client, message, spCmd) {
     const embed = new Discord.RichEmbed()
         .setTitle(spCmd.command)
         .setDescription(spCmd.description)

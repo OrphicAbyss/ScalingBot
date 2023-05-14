@@ -1,6 +1,8 @@
 "use strict";
 
-module.exports.levelUpEmbed = function (client, message, Discord, level) {
+const Discord = require("discord.js");
+
+module.exports.levelUpEmbed = function (client, message, level) {
     const embed = new Discord.RichEmbed()
         .setTitle(message.author.username)
         .setDescription(`**CONGRATS**\nYou are now level **${level}**!!!`)
@@ -8,5 +10,4 @@ module.exports.levelUpEmbed = function (client, message, Discord, level) {
         .setThumbnail(message.author.displayAvatarURL);
 
     message.channel.send({embed: embed});
-
 };

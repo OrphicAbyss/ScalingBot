@@ -1,9 +1,11 @@
 "use strict";
 
-module.exports.profileEmbed = function (client, message, user, iUser, Discord) {
+const Discord = require("discord.js");
+
+module.exports.profileEmbed = function (client, message, user, iUser) {
     const embed = new Discord.RichEmbed()
-        .setTitle(user.username)
-        .setDescription(`**Level:** ${iUser.uLevel} \n**Exp:** ${iUser.globalPoints} / ${iUser.nextPL}\n**Rank:** ${iUser.globalRank}`)
+        .setTitle(iUser.username)
+        .setDescription(`**Level:** ${iUser.rank} \n**Exp:** ${iUser.globalPoints} / ${iUser.rankPoints}\n**Rank:** ${iUser.globalRank}`)
         .setColor(0x00AE86)
         .setThumbnail(user.displayAvatarURL);
 

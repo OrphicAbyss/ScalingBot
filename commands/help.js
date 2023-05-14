@@ -3,7 +3,7 @@
 const hEmbed = require("./../embeds/eHelp.js");
 const eCEmbed = require("./../embeds/eCHelp.js");
 
-exports.run = (client, message, args, sql, Discord) => {
+exports.run = (client, message, args) => {
     const cHelp = {
         command: "help",
         description: "In this command you can see all the of the commands and you can see specific information about a command by doing ``:?help rank``"
@@ -32,25 +32,25 @@ exports.run = (client, message, args, sql, Discord) => {
     let mHelp = args[0];
     switch (mHelp) {
         case "leaderboard":
-            eCEmbed.spHEmbed(client, message, Discord, cLeaderboard);
+            eCEmbed.spHEmbed(client, message, cLeaderboard);
             break;
         case "help":
-            eCEmbed.spHEmbed(client, message, Discord, cHelp);
+            eCEmbed.spHEmbed(client, message, cHelp);
             break;
         case "rank":
-            eCEmbed.spHEmbed(client, message, Discord, cRank);
+            eCEmbed.spHEmbed(client, message, cRank);
             break;
         case "bug":
-            eCEmbed.spHEmbed(client, message, Discord, cBug);
+            eCEmbed.spHEmbed(client, message, cBug);
             break;
         case "rlevel":
-            eCEmbed.spHEmbed(client, message, Discord, crLevel);
+            eCEmbed.spHEmbed(client, message, crLevel);
             break;
         case "blacklist":
-            eCEmbed.spHEmbed(client, message, Discord, pBlackList);
+            eCEmbed.spHEmbed(client, message, pBlackList);
             break;
         default:
-            hEmbed.helpEmbed(client, message, Discord);
+            hEmbed.helpEmbed(client, message);
             break;
     }
 };

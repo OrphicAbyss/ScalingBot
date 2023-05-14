@@ -2,6 +2,7 @@
 
 const lEmbed = require("./../embeds/eLeaderboard.js");
 
-exports.run = (client, message, args, sql, Discord) => {
-    lEmbed.leaderboardEmbed(client, message, sql, Discord);
+exports.run = async (client, message, args, database) => {
+    const leaders = await database.getLeaderBoard();
+    lEmbed.leaderboardEmbed(client, message, leaders);
 };

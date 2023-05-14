@@ -2,24 +2,18 @@
 
 const pEmbed = require("./../embeds/eProfile.js");
 
-exports.run = (client, message, args, sql, Discord) => {
+exports.run = async (client, message, args, database) => {
     const member = message.guild.member(message.mentions.users.first());
+    const noPoints = !message ? "Sorry you don't have any points."
+        : `Sorry ${member.username} doesn't have any points.`
 
-    if (!member) {
-        sql.get(`SELECT * FROM userScores WHERE guildID = '${message.guild.id}' AND userID = '${message.author.id}'`).then(iUser => { //gets user row of whos requesting
-            if (!iUser) {
-                message.reply("Sorry you don't have any points. Start chatting to earn them!");
-            } else {
-                pEmbed.profileEmbed(client, message, message.author, iUser, Discord);
-            }
-        });
+    const user = await database.getUser(message.guild, member || message.author);
+    if (!user) {
+        message.reply(noPoints);
     } else {
-        sql.get(`SELECT * FROM userScores WHERE guildID = '${message.guild.id}' AND userID = '${member.id}'`).then(iUser => {
-            if (!iUser) {
-                message.reply("Sorry they don't have any points. Have them start chatting to earn them!");
-            } else {
-                pEmbed.profileEmbed(client, message, member.user, iUser, Discord);
-            }
-        });
+        database.calculateRank(user);
+        await database.calculatePostion(user);
+
+        pEmbed.profileEmbed(client, message, message.author, user);
     }
 };

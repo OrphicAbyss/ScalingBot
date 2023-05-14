@@ -1,6 +1,8 @@
 "use strict";
 
-module.exports.helpEmbed = function (client, message, Discord) {
+const Discord = require("discord.js");
+
+module.exports.helpEmbed = function (client, message) {
     const embed = new Discord.RichEmbed()
         .setTitle("ScaleBot")
         .setDescription("List of commands for ScaleBot.")

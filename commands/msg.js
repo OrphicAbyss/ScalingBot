@@ -2,7 +2,7 @@
 
 const config = require("./../config.json");
 
-exports.run = (client, message, args, sql, Discord) => {
+exports.run = (client, message, args) => {
     if (message.author.id === config.ownerID) {
         let sendTo = args[0];
         let sMessage = args.splice(1);
